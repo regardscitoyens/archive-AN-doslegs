@@ -1,4 +1,4 @@
-#!/bin.bash
+#!/bin/bash
 
 mkdir -p archive
 
@@ -23,9 +23,16 @@ for leg in $(seq 8 15); do
     sort -u                                             |
     while read dossier; do
       archive $dossier
-      redir=$(curl -sLI "http://www.assemblee-nationale.fr$dossier" | grep Location | sed 's/^Location: //')
-      if [ ! -z "$redir" ] && [ "$redir" != "$dossier" ]; then
-        archive $redir
-      fi
+      curl -sLI "http://www.assemblee-nationale.fr$dossier" |
+        grep Location         |
+        sed 's/^Location: //' |
+        while read redir; do
+          if [ ! -z "$redir" ] && [ "$redir" != "$dossier" ]; then
+            if echo $redir | grep '^[^/]' > /dev/null; then
+              redir=$(echo $dossier | sed -r 's|^/(.*)/[^/]+$|\1|')/$redir
+            fi
+            archive $redir
+          fi
+        done
     done
 done
