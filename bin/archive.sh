@@ -1,9 +1,11 @@
 #!/bin.bash
 
+mkdir -p archive
+
 function archive() {
   dossier=$1
   outfile=$(echo $dossier | sed -r 's|^.*/([^/]+)$|\1|')
-  outdir=$(echo $dossier | sed -r 's|^/(.*)/[^/]+$|\1|')
+  outdir=archive/$(echo $dossier | sed -r 's|^/(.*)/[^/]+$|\1|')
   mkdir -p $outdir
   echo $outdir/$outfile
   curl -sL "http://www.assemblee-nationale.fr$dossier" > $outdir/$outfile
