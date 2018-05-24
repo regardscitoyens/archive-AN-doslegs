@@ -2,13 +2,29 @@
 
 mkdir -p archive
 
+function download() {
+  url=$1
+  outfile=$2
+  curl -sL "$url" > "$outfile"
+  if ! test -s "$outfile"; then
+    sleep 2
+    curl -sL "$url" > "$outfile"
+    if ! test -s "$outfile"; then
+      print " -> ERROR! Can't download $url"
+    fi
+  fi
+}
+
 function archive() {
   dossier=$1
   outfile=$(echo $dossier | sed -r 's|^.*/([^/]+)$|\1|')
   outdir=archive/$(echo $dossier | sed -r 's|^/(.*)/[^/]+$|\1|')
   mkdir -p $outdir
+  if test -s "$outdir/$outfile"; then
+    return
+  fi
   echo $outdir/$outfile
-  curl -sL "http://www.assemblee-nationale.fr$dossier" > $outdir/$outfile
+  download "http://www.assemblee-nationale.fr$dossier" $outdir/$outfile
 }
 
 for leg in $(seq 8 15); do
@@ -24,14 +40,15 @@ for leg in $(seq 8 15); do
     while read dossier; do
       archive $dossier
       curl -sLI "http://www.assemblee-nationale.fr$dossier" |
-        grep Location         |
-        sed 's/^Location: //' |
+        grep Location             |
+        awk -F ': ' '{print $2}'  |
+        sed 's/\W*$//'            |
         while read redir; do
           if [ ! -z "$redir" ] && [ "$redir" != "$dossier" ]; then
             if echo $redir | grep '^[^/]' > /dev/null; then
-              redir=$(echo $dossier | sed -r 's|^/(.*)/[^/]+$|\1|')/$redir
+              redir=$(echo $dossier | sed -r 's|^(/.*)/[^/]+$|\1|')/$redir
             fi
-            archive $redir
+            archive "$redir"
           fi
         done
     done
