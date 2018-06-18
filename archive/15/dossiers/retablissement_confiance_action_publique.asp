@@ -739,7 +739,7 @@ Décision <a href="http://www.conseil-constitutionnel.fr/decision/2017/2017753dc.
 
 
 
-<p align="center"><b><font color="#000080"><a href="/14/dossiers/retablissement_confiance_action_publique.asp#confiance_action_publique">Accès aux Travaux préparatoires sous la 14ème législature</a></font></b></p><hr><br><p align="center"><b><font color="#000080">Travaux préparatoires</font></b><br>
+<p align="center"><b><font color="#000080"><a href="/14/dossiers/confiance_action_publique.asp">Accès aux Travaux préparatoires sous la 14ème législature</a></font></b></p><hr><br><p align="center"><b><font color="#000080">Travaux préparatoires</font></b><br>
 <div align="center"><a href="#ETAPE358251"> <font face="Arial" size="1">Sénat 1<sup>ère</sup> lecture</font></a> - <a href="#ETAPE358252"> <font face="Arial" size="1">Assemblée nationale 1<sup>ère</sup> lecture</font></a> - <a href="#ETAPE358254"> <font face="Arial" size="1">Commission Mixte Paritaire</font></a> - <a href="#ETAPE358255"> <font face="Arial" size="1">Lecture texte CMP</font></a> - <a href="#ETAPE358256"> <font face="Arial" size="1">Conseil Constitutionnel</font></a></div><p>
 <p align="center"><b><font color="#000099" size="2" face="Arial"><a name="ETAPE358251"></a>Sénat - 1<sup>ère</sup> lecture</b><br><a target="_blank" href="http://www.senat.fr/dossier-legislatif/pjl16-581.html"><i>(Dossier en ligne sur le site du Sénat)</i></a></font></b></p>
 
